@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #customMenu {
+            display: none;
+            position: absolute;
+            background-color: rgb(86, 151, 255);
+            border: 1px solid rgb(0, 0, 0);
+            padding: 10px;
+        }
+        input:focus {
+            border: 2px solid blue;
+            outline: none; /* Quita el contorno predeterminado en algunos navegadores */
+        }
+        body {
+            text-align: center;
+            padding-top: 50px;
+        }
+        #dimensions {
+            font-size: 20px;
+            color: blue;
+        }
+        #miElemento {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(229, 184, 87);
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    position: absolute;
+    cursor: pointer;
+}
+body {
+            background-image: url('logo.jpeg');
+            background-size: contain; /* Ajusta el tamaño de la imagen para que se contenga dentro del cuerpo */
+            background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+            background-position: center center; /* Centra la imagen de fondo */
+            height: 100vh; /* Establece la altura del cuerpo al 100% del viewport */
+            margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+            display: flex; /* Utiliza flexbox para centrar verticalmente el contenido */
+            justify-content: center; /* Centra horizontalmente el contenido */
+            align-items: center; /* Centra verticalmente el contenido */
+        }
+        
+        /* Estilos adicionales para el contenido de la página */
+        .content {
+            text-align: center; /* Centra el texto en el contenido */
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo semi-transparente */
+            padding: 20px; /* Espaciado interior */
+            border-radius: 10px; /* Bordes redondeados */
+        }
+    </style>
+
+</head>
+<body>
+    <center>
+        <div id="customMenu">Esta Pagina es para registrarte</div>
+
+    <script>
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault(); // Evita el menú contextual predeterminado
+
+            var customMenu = document.getElementById("customMenu");
+            customMenu.style.display = "block";
+            customMenu.style.left = event.pageX + "px";
+            customMenu.style.top = event.pageY + "px";
+        });
+
+        document.addEventListener("click", function() {
+            document.getElementById("customMenu").style.display = "none";
+        });
+    </script>
+
+<div id="dimensions">Ancho: <span id="width"></span>px | Alto: <span id="height"></span>px</div>
+
+<script>
+    window.addEventListener("resize", function() {
+        document.getElementById("width").textContent = window.innerWidth;
+        document.getElementById("height").textContent = window.innerHeight;
+    });
+
+    // Mostrar las dimensiones actuales al cargar la página
+    document.getElementById("width").textContent = window.innerWidth;
+    document.getElementById("height").textContent = window.innerHeight;
+</script>
+
+        
+        <form id="REGISTRATE">
+            <a style="color: #ff0000;" href="inicio.html">Volver al Inicio</a>
+<h1 style="color: #ff0000;"> REGISTRATE!</h1>
+   
+
+   <br>
+ <form action="" onsubmit="Mensaje()">
+
+ <h2 style="color: #ff0000;">  Nombres </h2><br>
+       <input type="text" id="nom"><br><br>
+
+ <h2 style="color: #ff0000;"> Edad </h2><br>
+       <input type="number" id="Edad" ><br><br>
+ 
+ <h2 style="color: #ff0000;"> Correo Electronico </h2><br>
+       <input type="email" id="email" ><br><br>
+       </form>
+       <button onclick="myFunction()">Resetear</button>
+
+       <script>
+        document.getElementById("nom").addEventListener("focus", function() {
+            this.style.backgroundColor = "lightyellow";
+        });
+
+        document.getElementById("nom").addEventListener("blur", function() {
+            this.style.backgroundColor = "lightblue";
+        });
+    </script>
+
+
+ <script>
+ function Mensaje(){
+ alert("Se ha enviado tus respuestas");
+ }	
+ </script>
+ <script>
+    function myFunction() {
+      document.getElementById("REGISTRATE").reset();
+    }
+    
+   
+    </script>
+    
+ </form>
+ 
+
+ <button onclick="confirmar()">Confirmar</button>
+
+ <script>
+ function confirmar() {
+     // Mostrar ventana de confirmación
+     var respuesta = confirm("¿Estás seguro de enviar tus respuestas?");
+     // Verificar la respuesta
+     if (respuesta == true) {
+         // Si el usuario hace clic en "Aceptar"
+         alert("Respuesta enviada!");
+     } else {
+         // Si el usuario hace clic en "Cancelar" o cierra la ventana
+         alert("Respuesta cancelada.");
+     }
+ }
+ 
+ </script>
+<div id="miElemento" draggable="true">YMAZ</div>
+
+<script>
+// Obtener el elemento que se puede arrastrar
+var elementoArrastrable = document.getElementById("miElemento");
+
+// Agregar un event listener para el evento de inicio del arrastre
+elementoArrastrable.addEventListener("dragstart", function(event) {
+    // Al iniciar el arrastre, establecer el ID del elemento arrastrado
+    event.dataTransfer.setData("text/plain", event.target.id);
+});
+
+// Agregar un event listener para el evento de soltar (drop)
+document.body.addEventListener("drop", function(event) {
+    // Prevenir el comportamiento predeterminado
+    event.preventDefault();
+    // Obtener el ID del elemento arrastrado
+    var data = event.dataTransfer.getData("text");
+    // Obtener el elemento arrastrado
+    var elementoArrastrado = document.getElementById(data);
+    // Obtener la posición del puntero del mouse
+    var x = event.clientX;
+    var y = event.clientY;
+    // Establecer la posición del elemento arrastrado
+    elementoArrastrado.style.left = (x - elementoArrastrado.offsetWidth / 2) + "px";
+    elementoArrastrado.style.top = (y - elementoArrastrado.offsetHeight / 2) + "px";
+});
+
+// Agregar un event listener para el evento de arrastre sobre el área de destino
+document.body.addEventListener("dragover", function(event) {
+    // Prevenir el comportamiento predeterminado
+    event.preventDefault();
+});
+</script>
+    </form>
+  
+
+    
+</center>
+</body>
+</html>
